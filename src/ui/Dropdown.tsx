@@ -7,13 +7,17 @@ export default function Dropdown({
   search,
   setSearch,
   selected,
-  setSelected
+  setSelected,
+  renderItem,
+  renderSelected,
 }: {
   items: string[]
   search: string
   setSearch: (value: string) => void
   selected: string
   setSelected: (value: string) => void
+  renderItem: (item: string) => React.ReactNode
+  renderSelected: (item: string) => React.ReactNode
 }) {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -35,12 +39,11 @@ export default function Dropdown({
 
   return (
     <div className="relative w-64" ref={dropdownRef}>
-      {/* Button */}
       <button
-        onClick={() => setOpen(!open)}
-        className={cn("w-full flex justify-between items-center rounded-[8px] border bg-[#F9FAFB] px-[16px] py-[12px] shadow-sm hover:bg-gray-50 cursor-pointer", selected !== "" ? "text-[#333333]" : "text-[#999999]", open ? "border-[#666666] border-b-0 rounded-b-none" : "border-[#D1D5DB]")}
+        onFocus={() => setOpen(true)}
+        className={cn("w-full flex justify-between items-center rounded-[8px] border bg-[#F9FAFB] px-[16px] py-[12px] shadow-sm hover:bg-gray-50 cursor-pointer text-[#999999]", open ? "border-[#666666] border-b-0 rounded-b-none" : "border-[#D1D5DB]")}
       >
-        {selected || "Оберіть ваше місто"}
+        {renderSelected ? renderSelected(selected) : selected || "Оберіть ваше місто"}
         <svg
           className="ml-2 h-5 w-5 text-gray-400"
           xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +78,7 @@ export default function Dropdown({
                   }}
                   className="px-[16px] py-[3px] text-[14px] text-[#6B7280] leading-[150%] hover:bg-[#F5F5F5] cursor-pointer"
                 >
-                  {item}
+                  {renderItem ? renderItem(item) : String(item)}
                 </li>
               ))
             ) : (
