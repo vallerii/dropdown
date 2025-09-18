@@ -59,7 +59,6 @@ export default function Dropdown({
         </svg>
       </button>
 
-      {/* Dropdown */}
       {open && (
         <div className="absolute w-full rounded-b-[8px] border border-[#666666] bg-white shadow-lg z-10 pt-[10px] pb-[16px] ">
           <div className="px-[16px] pb-[12px]">
