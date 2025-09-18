@@ -40,7 +40,11 @@ export default function Dropdown({
   return (
     <div className="relative w-64" ref={dropdownRef}>
       <button
-        onFocus={() => setOpen(true)}
+        onMouseDown={(e) => {
+          e.preventDefault(); 
+          setOpen(prev => !prev);
+        }}
+        onFocus={() => setOpen(true)} 
         className={cn("w-full flex justify-between items-center rounded-[8px] border bg-[#F9FAFB] px-[16px] py-[12px] shadow-sm hover:bg-gray-50 cursor-pointer text-[#999999]", open ? "border-[#666666] border-b-0 rounded-b-none" : "border-[#D1D5DB]")}
       >
         {renderSelected ? renderSelected(selected) : selected || "Оберіть ваше місто"}
