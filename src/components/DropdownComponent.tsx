@@ -4,7 +4,6 @@ import { useState } from "react";
 
 export default function DropdownComponent() {
   const items = ["Item 1", "Item 2", "Item 3"];
-  const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState("");
 
@@ -20,6 +19,20 @@ export default function DropdownComponent() {
         setSearch={setSearch} 
         selected={selected} 
         setSelected={setSelected}
+        renderItem={(item) => (
+          <span className="text-[#333333]">
+            <span>{item}</span>
+          </span>
+        )}
+        renderSelected={(item) =>
+          item ? (
+            <span className="text-[#333333]">
+              <span>{item}</span>
+            </span>
+          ) : (
+            "Оберіть ваше місто"
+          )
+        }
       />
     </div>
   );
