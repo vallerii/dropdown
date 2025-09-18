@@ -38,7 +38,7 @@ export default function Dropdown({
   }, []);
 
   return (
-    <div className="relative w-64" ref={dropdownRef}>
+    <div className="relative w-[295px]" ref={dropdownRef}>
       <button
         onMouseDown={(e) => {
           e.preventDefault(); 
