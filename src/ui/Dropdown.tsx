@@ -67,6 +67,12 @@ export default function Dropdown({
               placeholder="Пошук..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && items.length > 0) {
+                  setSelected(items[0] || "");
+                  setOpen(false);
+                }
+              }}
               className="w-full h-[26px] rounded-[6px] border border-[#D1D5DB99] px-[8px] py-[4px] text-[14px] focus:outline-none focus:ring-1 focus:ring-[#666666]"
             />
           </div>
